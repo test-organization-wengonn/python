@@ -5,6 +5,7 @@ import hashlib
 import jwt
 from flask import Flask, request
 
+
 app = Flask(__name__)
 
 # 1. Hardcoded secret key (Insecure)

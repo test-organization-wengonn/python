@@ -18,6 +18,7 @@ def deserialize_data():
     return str(obj)
 
 # 3. Command injection via unsanitized input
+
 @app.route('/ping', methods=['GET'])
 def ping():
     host = request.args.get('host', '')

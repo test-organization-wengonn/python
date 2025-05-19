@@ -38,6 +38,7 @@ def get_jwt():
 @app.route('/')
 def index():
     return "Test app with vulnerabilities"
+    
 
 if __name__ == "__main__":
     app.run(debug=True)

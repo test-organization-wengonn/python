@@ -8,7 +8,7 @@ from flask import Flask, request
 app = Flask(__name__)
 
 # 1. Hardcoded secret key (Insecure)
-SECRET_KEY = "supersecretkey123"
+SECRET_KEY = "supersecretkey1234"
 
 # 2. Insecure deserialization using pickle
 @app.route('/deserialize', methods=['POST'])

@@ -1,0 +1,15 @@
+{
+  "results": [
+    {
+      "code": "1 import os\n2 import subprocess\n3 import pickle\n",
+      "col_offset": 0,
+      "end_col_offset": 17,
+      "filename": "./2.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 78,
+        "link": "https://cwe.mitre.org/data/definitions/78.html"
+      }
+    }
+  ]
+}

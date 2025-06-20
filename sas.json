@@ -1,0 +1,188 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "My Zuplo API"
+  },
+  "paths": {
+    "/v1/signup": {
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
+      "post": {
+        "x-base-path": "/v1",
+        "summary": "Signup",
+        "description": "",
+        "x-zuplo-route": {
+          "corsPolicy": "default-cors",
+          "handler": {
+            "export": "urlForwardHandler",
+            "module": "$import(@zuplo/runtime)",
+            "options": {
+              "baseUrl": "${env.BASE_URL_V1}"
+            }
+          },
+          "policies": {
+            "inbound": [
+              "core-authentication-inbound"
+            ]
+          }
+        },
+        "operationId": "48fc2e60-4e89-4396-8daf-9597a1c21520"
+      }
+    },
+    "/v1/login": {
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
+      "post": {
+        "x-base-path": "/v1",
+        "summary": "Login",
+        "description": "",
+        "x-zuplo-route": {
+          "corsPolicy": "default-cors",
+          "handler": {
+            "export": "urlForwardHandler",
+            "module": "$import(@zuplo/runtime)",
+            "options": {
+              "baseUrl": "${env.BASE_URL_V1}"
+            }
+          },
+          "policies": {
+            "inbound": [
+              "core-authentication-inbound"
+            ]
+          }
+        },
+        "operationId": "a1b2c3d4-e5f6-7890-1234-567890abcdef"
+      }
+    },
+    "/v1/logout": {
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
+      "post": {
+        "summary": "Logout",
+        "description": "This endpoint allows users to log out of their session. It invalidates the user's session and ensures that the access token can no longer be used for authentication.",
+        "x-zuplo-route": {
+          "corsPolicy": "default-cors",
+          "handler": {
+            "export": "logoutHandler",
+            "module": "$import(./modules/sessions/handlers)",
+            "options": {}
+          },
+          "policies": {
+            "inbound": [
+              "rate-limit-inbound"
+            ]
+          }
+        },
+        "operationId": "d4e5f6a7-b8c9-0123-4567-890abcdef123"
+      }
+    },
+    "/v1/auth/email-hook": {
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
+      "post": {
+        "x-base-path": "/v1",
+        "summary": "Email hook",
+        "description": "",
+        "x-zuplo-route": {
+          "corsPolicy": "none",
+          "handler": {
+            "export": "urlForwardHandler",
+            "module": "$import(@zuplo/runtime)",
+            "options": {
+              "baseUrl": "${env.BASE_URL_V1}"
+            }
+          },
+          "policies": {
+            "inbound": [
+              "api-service-auth-inbound",
+              "strip-base-path"
+            ]
+          }
+        },
+        "operationId": "e5f6a7b8-c9d0-1234-5678-90abcdef1234"
+      }
+    },
+    "/v1/session": {
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
+      "get": {
+        "summary": "Get session details",
+        "description": "This endpoint retrieves the session details of the user. It returns information such as the user's ID, email, and any other relevant session data.",
+        "x-zuplo-route": {
+          "corsPolicy": "default-cors",
+          "handler": {
+            "export": "sessionInfoHandler",
+            "module": "$import(./modules/sessions/handlers)",
+            "options": {}
+          },
+          "policies": {
+            "inbound": [
+              "rate-limit-inbound"
+            ]
+          }
+        },
+        "operationId": "f6a7b8c9-d0e1-2345-6789-0abcdef12345"
+      }
+    },
+    "/v1/verify": {
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
+      "post": {
+        "x-base-path": "/v1",
+        "summary": "Verify",
+        "description": "",
+        "x-zuplo-route": {
+          "corsPolicy": "default-cors",
+          "handler": {
+            "export": "urlForwardHandler",
+            "module": "$import(@zuplo/runtime)",
+            "options": {
+              "baseUrl": "${env.BASE_URL_V1}"
+            }
+          },
+          "policies": {
+            "inbound": [
+              "rate-limit-inbound",
+              "on-login-session-creation",
+              "strip-base-path",
+              "api-service-auth-inbound",
+              "transform-inbound-headers"
+            ]
+          }
+        },
+        "operationId": "a7b8c9d0-e1f2-3456-7890-abcdef123456"
+      }
+    },
+    "/v1/otp/re-authenticate": {
+      "x-zuplo-path": {
+        "pathMode": "open-api"
+      },
+      "post": {
+        "x-base-path": "/v1",
+        "summary": "OTP Re-authenticate",
+        "description": "Trigger an authenticated OTP request to verify the user before making critical changes to the account.",
+        "x-zuplo-route": {
+          "corsPolicy": "default-cors",
+          "handler": {
+            "export": "urlForwardHandler",
+            "module": "$import(@zuplo/runtime)",
+            "options": {
+              "baseUrl": "${env.BASE_URL_V1}"
+            }
+          },
+          "policies": {
+            "inbound": ["core-authentication-inbound"]
+          }
+        },
+        "operationId": "b8c9d0e1-f2a3-4567-8901-bcdef1234567"
+      }
+    }
+  }
+}
